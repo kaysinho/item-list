@@ -12,9 +12,8 @@ export class ProductService {
   constructor(private http : HttpClient) { }
 
   getProducts(){
-    //return this.http.get(`${this.URI}/getItems`);
     return new Observable(observer => {
-      this.http.get(`https://test.spaceflightnewsapi.net/api/v2/articles?_limit=100`)
+      this.http.get(`${this.URI}/getItems`)
         .subscribe( (data:any) => {
           let paginationData = [];
           let itemList = [];

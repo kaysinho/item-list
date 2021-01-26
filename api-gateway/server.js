@@ -12,29 +12,12 @@ const URI = 'https://test.spaceflightnewsapi.net/api/v2/articles?_limit=100';
 const compression = require('compression');
 app.enable('trust proxy');
 
-
-app.use(function (req, res, next) {
-    if (req.headers.host == 'localhost:8080') {
-        //Si es localhost
-        next();
-    } else {
-        if (req.secure) {
-            // request via https
-            next();
-        } else {
-            // request was via http, hacemos el redirect a https
-            res.redirect('https://' + req.headers.host + req.url);
-        }
-    }
-
-});
-
 app.use(compression());
 
 const server = http.createServer(app);
 
 // Reverse proxy, pipes the requests to/from MobileFirst Server
-app.use('/getItems', function (req, res) {
+app.use('/getItems', (req, res) => {
 
     //Consultamos la caché
     if (myCache.get(keyCache) == undefined) {
@@ -42,13 +25,21 @@ app.use('/getItems', function (req, res) {
         //Request real al API
         let body = [];
         req.pipe(request[req.method.toLowerCase()](URI))
-            .on('response', function (res) {
-            }).on('data', function (chunk) {
+            .on('response', (res) => {
+            }).on('data', (chunk) => {
                 body.push(chunk);
-            }).on('end', function () {
+            }).on('end', () => {
                 body = Buffer.concat(body).toString();
-                myCache.set(keyCache, JSON.parse(body), 300); //300 seconds, 5 minutes
-            }).pipe(res)
+                let bodyFormatted = JSON.parse(body).map(i => {
+                    return {
+                        title: i.title,
+                        imageUrl: i.imageUrl,
+                        url: i.url
+                    }
+                });
+                myCache.set(keyCache, bodyFormatted, 300); //300 seconds, 5 minutes
+                res.send(JSON.stringify(bodyFormatted));
+            })
     } else {
         console.log("Fake Request to caché...")
         //Respondemos con lo almacenado en caché
