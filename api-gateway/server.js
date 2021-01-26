@@ -16,7 +16,7 @@ app.use(compression());
 
 const server = http.createServer(app);
 
-// Reverse proxy, pipes the requests to/from MobileFirst Server
+// Obtiene la petición getItems y la redirecciona al API real, luego transforma la data, almacena el cache y responde al consumidor
 app.use('/getItems', (req, res) => {
 
     //Consultamos la caché
