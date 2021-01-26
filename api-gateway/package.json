@@ -1,0 +1,28 @@
+{
+  "name": "get-items-angular",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Proyecto que funciona como Gateway para el Front que lo consuma",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": null
+  },
+  "scripts": {
+    "start": "node server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": "8.15.0"
+  },
+  "dependencies": {
+    "compression": "^1.7.3",
+    "depd": "1.1.1",
+    "express": "^4.16.2",
+    "http": "0.0.0",
+    "node-cache": "^5.1.2",
+    "request": "^2.83.0"
+  }
+}

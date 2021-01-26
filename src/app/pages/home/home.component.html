@@ -1,0 +1,27 @@
+<div class="progress blue" *ngIf="products.length==0">
+  <div class="indeterminate  blue lighten-3"></div>
+</div>
+<div class="row">
+  <div class="col s12 m12" *ngFor="let product of products[activePage]">
+    <div class="card horizontal">
+      <div class="card-image">
+        <img [src]="product.imageUrl" [alt]="product.title" />
+      </div>
+      <div class="card-stacked">
+        <div class="card-content">
+          <h5 class="blue-grey-text darken-4">{{ product.title }}</h5>
+        </div>
+        <a href="{{ product.url }}" class="btn-floating halfway-fab waves-effect waves-light blue darken-1"><i class="material-icons">add</i></a>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <ul class="pagination center-align">
+    <li *ngIf="activePage > 0" class="waves-effect"><a (click)="previousPage()" href="#!"><i class="material-icons">chevron_left</i></a></li>
+    <li *ngFor="let p of products; index as i" (click)="goToPage(i)" [ngClass]="{ active: i == activePage }" class="active"><a href="#!">{{ i + 1 }}</a></li>
+  
+    <li *ngIf=" activePage + 1 < products.length" (click)="nextPage()" class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+  </ul>
+</div>
