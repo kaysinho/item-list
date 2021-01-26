@@ -1,27 +1,25 @@
-# ArticleList
+# ItemList
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.2.0.
+Este proyecto fue generado con [Angular CLI](https://github.com/angular/angular-cli) versión 10.2.0.
 
-## Development server
+Proyecto para prueba tecnica como FrontEnd developer en Mercadolibre.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Instalación de Dependencias
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Correr `npm install` para instalar dependencias del proyecto de Angular, luego de esto navegar a la carpeta `api-gateway` y volver a ejecutar el comando anterior para instalar dependencias del otro proyecto de Node.js.
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Servidor de Desarrollo
 
-## Running unit tests
+Ejecutar `npm run localSERVER` en una terminal para servir el ambiente de desarrollo. Navegar a `http://localhost:880/`. Este comando ejecutará el proyecto interno de Node.js llamado `api-gateway` donde internamente se sirve de forma estatica los transpilados del proyecto de Angular y se expone el metodo getItems.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Pruebas Unitarias
 
-## Running end-to-end tests
+Correr `ng test` para ejecutar las pruebas unitarias via [Karma](https://karma-runner.github.io).
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Tambien puede ver la cobertura total del proyecto ejecutando `ng test --code-coverage` y luego abrir el index.html generado en la carpeta `coverage`.
 
-## Further help
+## Más información
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Escribir al Autor [Jhonatan Plata](https://www.linkedin.com/in/jhonantan-plata/).
